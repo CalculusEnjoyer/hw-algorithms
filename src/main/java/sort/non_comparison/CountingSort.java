@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.function.ToIntFunction;
 
 public class CountingSort implements NonComparisonSort {
-    //    This is sorting method based on counting sort algorithm. It is useful when you have
+//    This is sorting method based on counting sort algorithm. It is useful when you have
 //    to sort array using on one integer field. It has O(N) time and
 //    O(N) memory complexities. Even though it requires O(N) memory, testing shows that it is
 //    approximately 5 times faster than default Array.sort() algorithm on a 30 000 000 array.
@@ -51,7 +51,7 @@ public class CountingSort implements NonComparisonSort {
         System.arraycopy(sorted, 0, arr, 0, sorted.length);
 
 //      Total complexity: n*(c0+c1+c4)+c2 = O(N)
-//      Memory complexity: c2*n = O(N)
+//      Memory complexity: c3*n = O(N)
 
         return arr;
     }
