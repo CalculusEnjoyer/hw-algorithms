@@ -9,8 +9,8 @@ public final class UniqueFinder {
     }
 
     public static int uniqueCounter(Person[] arr, Comparator<Person> comparator) {
-//      Finds number of unique elements (if array contains
-//      multiple unique elements, it counts then as one)
+//      Finds amount of unique elements (if array contains
+//      multiple equal elements, method counts them as one)
 
 //      Coping in order to not change input array
 //      c0*n
