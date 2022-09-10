@@ -2,50 +2,42 @@ package sort.comparison;
 
 import java.util.Comparator;
 
-public class HeapSort implements ComparisonSort{
+public class HeapSort implements ComparisonSort {
     @Override
     public <A> A[] sort(A[] arr, Comparator<A> comparator) {
-        int N = arr.length;
+        int arrLength = arr.length;
 
-        // Build heap (rearrange array)
-        for (int i = N / 2 - 1; i >= 0; i--)
-            heapify (arr, N, i,comparator);
+        for (int i = arrLength / 2 - 1; i >= 0; i--)
+            makeHeap(arr, arrLength, i, comparator);
 
-        // One by one extract an element from heap
-        for (int i = N - 1; i > 0; i--) {
-            // Move current root to end
+        for (int i = arrLength - 1; i > 0; i--) {
             A temp = arr[0];
             arr[0] = arr[i];
             arr[i] = temp;
 
-            // call max heapify on the reduced heap
-            heapify(arr, i, 0,comparator);
+            makeHeap(arr, i, 0, comparator);
         }
 
         return arr;
     }
 
-    private static <A> void heapify(A [] arr, int N, int i,Comparator<A> comparator) {
-        int largest = i; // Initialize largest as root
-        int l = 2 * i + 1; // left = 2*i + 1
-        int r = 2 * i + 2; // right = 2*i + 2
+    private static <A> void makeHeap(A[] arr, int n, int parent, Comparator<A> comparator) {
+        int largest = parent;
+        int left = 2 * parent + 1;
+        int right = 2 * parent + 2;
 
-        // If left child is larger than root
-        if (l < N && comparator.compare(arr[l] ,arr[largest])>0)
-            largest = l;
+        if (left < n && comparator.compare(arr[left], arr[largest]) > 0)
+            largest = left;
 
-        // If right child is larger than largest so far
-        if (r < N && comparator.compare(arr[r],arr[largest])>0)
-            largest = r;
+        if (right < n && comparator.compare(arr[right], arr[largest]) > 0)
+            largest = right;
 
-        // If largest is not root
-        if (largest != i) {
-            A swap = arr[i];
-            arr[i] = arr[largest];
+        if (largest != parent) {
+            A swap = arr[parent];
+            arr[parent] = arr[largest];
             arr[largest] = swap;
 
-            // Recursively heapify the affected sub-tree
-            heapify(arr, N, largest,comparator);
+            makeHeap(arr, n, largest, comparator);
         }
     }
 }
